@@ -1,5 +1,273 @@
-extends layout
-
+extends include/layout.pug
 block content
-  h1= title
-  p Welcome to #{title}
+  .text-center.tm-hero-text-container
+    .tm-hero-text-container-inner
+      h2.tm-hero-title MediaKeeper
+      p.tm-hero-subtitle
+        | Everything you need to store, all in one place
+  .tm-next.tm-intro-next
+    a.text-center.tm-down-arrow-link(href='#whymediakepper')
+      i.fas.fa-2x.fa-arrow-down.tm-down-arrow
+  section#whymediakepper.tm-section-pad-top
+    .container
+      .row.tm-content-box
+        // first row
+        .col-lg-12.col-xl-12
+          .tm-intro-text-container
+            h2.tm-text-primary.mb-4.tm-section-title What MediaKeeper Does?
+              p.mb-4.tm-intro-text
+                | Now you have the ability to keep all your data stored at one place. With MediaKeeper it is easy to organize your data whether if they are pictures, music, audios, videos, and documents of any format type, it&apos;s quick and relaible keeper of your data in one single container.
+      .row.tm-content-box
+        // second row
+        .col-lg-1
+          i.far.fa-3x.fa-chart-bar.text-center.tm-icon
+        .col-lg-5
+          .tm-intro-text-container
+            h2.tm-text-primary.mb-4 Less switching between tools
+              p.mb-4.tm-intro-text 
+                | Praesent sed pharetra lorem, blandit convallis mi. Aenean ornare elit ac metus lacinia, sed iaculis nibh semper. Pellentesque est urna.
+        .col-lg-1
+          i.far.fa-3x.fa-comment-alt.text-center.tm-icon
+        .col-lg-5
+          .tm-intro-text-container
+            h2.tm-text-primary.mb-4 Fast Support
+              p.mb-4.tm-intro-text
+                | Credit goes to 
+                a(rel='nofollow' href='https://www.pexels.com') Pexels
+                |  website for all images used in this template. Cras condimentum mi et sapien dignissim luctus.
+      // second row
+      .row.tm-content-box
+        // third row
+        .col-lg-1
+          i.fas.fa-3x.fa-fingerprint.text-center.tm-icon
+        .col-lg-5
+          .tm-intro-text-container
+            h2.tm-text-primary.mb-4 Top Security
+              p.mb-4.tm-intro-text
+                | You have 
+                strong no
+                |  authority to post this template as a ZIP file on your template collection websites. You can 
+                strong use
+                |  this template for your commercial websites.
+        .col-lg-1
+          i.fas.fa-3x.fa-users.text-center.tm-icon
+        .col-lg-5
+          .tm-intro-text-container
+            h2.tm-text-primary.mb-4 Social Work
+              p.mb-4.tm-intro-text
+                | You can change 
+                a(href='https://fontawesome.com/icons?d=gallery') Font Awesome icons
+                |  by either 
+                b
+                  em fas or far
+                |  in the HTML codes. For Examples:
+                br
+                em &lt;i class=&quot;fas fa-users&quot;&gt;&lt;i class=&quot;far fa-chart-bar&quot;&gt;
+      // third row
+  // Contact
+  section#contact.tm-section-pad-top.tm-parallax-2
+    .container.tm-container-contact
+      .row
+        .text-center.col-12
+          h2.tm-section-title.mb-4 Contact Us
+          p.mb-5
+            | Proin enim orci, tincidunt quis suscipit in, placerat nec est. Vestibulum posuere faucibus posuere. Quisque aliquam velit eget leo blandit egestas. Nulla id posuere felis, quis tristique nulla.
+          br
+        .col-sm-12.col-md-6
+          form(action='' method='get')
+            input#name.tm-input(name='name' type='text' placeholder='Your Name' required='')
+            input#email.tm-input(name='email' type='email' placeholder='Your Email' required='')
+            textarea#message.tm-input(name='message' rows='8' placeholder='Message' required='')
+            button.btn.tm-btn-submit(type='submit') Submit
+        .col-sm-12.col-md-6
+          .contact-item
+            a.item-link(rel='nofollow' href='https://www.tooplate.com/contact')
+              i.far.fa-2x.fa-comment.mr-4
+              span.mb-0 Chat Online
+          .contact-item
+            a.item-link(rel='nofollow' href='mailto:mail@company.com')
+              i.far.fa-2x.fa-envelope.mr-4
+              span.mb-0 mail@company.com
+          .contact-item
+            a.item-link(rel='nofollow' href='https://www.google.com/maps')
+              i.fas.fa-2x.fa-map-marker-alt.mr-4
+              span.mb-0 Our Location
+          .contact-item
+            a.item-link(rel='nofollow' href='tel:0100200340')
+              i.fas.fa-2x.fa-phone-square.mr-4
+              span.mb-0 255-662-5566
+          .contact-item &nbsp;
+      // row ending
+    footer.text-center.small.tm-footer
+      p.mb-0
+        | &copy; 2021 MediaKeeper 
+        | . 
+        a(rel='nofollow' href='#home' title='HTML templates') Designed by Divyani Rajani
+  script(src='javascripts/jquery-1.9.1.min.js')
+  script(src='slick/slick.min.js')
+  script(src='magnific-popup/jquery.magnific-popup.min.js')
+  script(src='javascripts/easing.min.js')
+  script(src='javascripts/jquery.singlePageNav.min.js')
+  script(src='javascripts/bootstrap.min.js')
+  script.
+    function getOffSet(){
+    var _offset = 450;
+    var windowHeight = window.innerHeight;
+    if(windowHeight > 500) {
+    _offset = 400;
+    }
+    if(windowHeight > 680) {
+    _offset = 300
+    }
+    if(windowHeight > 830) {
+    _offset = 210;
+    }
+    return _offset;
+    }
+    function setParallaxPosition($doc, multiplier, $object){
+    var offset = getOffSet();
+    var from_top = $doc.scrollTop(),
+    bg_css = 'center ' +(multiplier * from_top - offset) + 'px';
+    $object.css({"background-position" : bg_css });
+    }
+    var background_image_parallax = function($object, multiplier, forceSet){
+    multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+    multiplier = 1 - multiplier;
+    var $doc = $(document);
+    // $object.css({"background-attatchment" : "fixed"});
+    if(forceSet) {
+    setParallaxPosition($doc, multiplier, $object);
+    } else {
+    $(window).scroll(function(){
+    setParallaxPosition($doc, multiplier, $object);
+    });
+    }
+    };
+    var background_image_parallax_2 = function($object, multiplier){
+    multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+    multiplier = 1 - multiplier;
+    var $doc = $(document);
+    $object.css({"background-attachment" : "fixed"});
+    $(window).scroll(function(){
+    if($(window).width() > 768) {
+    var firstTop = $object.offset().top,
+    pos = $(window).scrollTop(),
+    yPos = Math.round((multiplier * (firstTop - pos)) - 186);
+    var bg_css = 'center ' + yPos + 'px';
+    $object.css({"background-position" : bg_css });
+    } else {
+    $object.css({"background-position" : "center" });
+    }
+    });
+    };
+    $(function(){
+    // Hero Section - Background Parallax
+    background_image_parallax($(".tm-parallax"), 0.30, false);
+    background_image_parallax_2($("#contact"), 0.80);
+    background_image_parallax_2($("#testimonials"), 0.80);
+    // Handle window resize
+    window.addEventListener('resize', function(){
+    background_image_parallax($(".tm-parallax"), 0.30, true);
+    }, true);
+    // Detect window scroll and update navbar
+    $(window).scroll(function(e){
+    if($(document).scrollTop() > 120) {
+    $('.tm-navbar').addClass("scroll");
+    } else {
+    $('.tm-navbar').removeClass("scroll");
+    }
+    });
+    // Close mobile menu after click
+    $('#tmNav a').on('click', function(){
+    $('.navbar-collapse').removeClass('show');
+    })
+    // Scroll to corresponding section with animation
+    $('#tmNav').singlePageNav({
+    'easing': 'easeInOutExpo',
+    'speed': 600
+    });
+    // Add smooth scrolling to all links
+    // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+    $("a").on('click', function(event) {
+    if (this.hash !== "") {
+    event.preventDefault();
+    var hash = this.hash;
+    $('html, body').animate({
+    scrollTop: $(hash).offset().top
+    }, 600, 'easeInOutExpo', function(){
+    window.location.hash = hash;
+    });
+    } // End if
+    });
+    // Pop up
+    $('.tm-gallery').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    gallery: { enabled: true }
+    });
+    $('.tm-testimonials-carousel').slick({
+    dots: true,
+    prevArrow: false,
+    nextArrow: false,
+    home: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+    {
+    breakpoint: 992,
+    settings: {
+    slidesToShow: 2
+    }
+    },
+    {
+    breakpoint: 768,
+    settings: {
+    slidesToShow: 2
+    }
+    },
+    {
+    breakpoint: 480,
+    settings: {
+    slidesToShow: 1
+    }
+    }
+    ]
+    });
+    // Gallery
+    $('.tm-gallery').slick({
+    dots: true,
+    home: false,
+    slidesToShow: 5,
+    slidesToScroll: 2,
+    responsive: [
+    {
+    breakpoint: 1199,
+    settings: {
+    slidesToShow: 4,
+    slidesToScroll: 2
+    }
+    },
+    {
+    breakpoint: 991,
+    settings: {
+    slidesToShow: 3,
+    slidesToScroll: 2
+    }
+    },
+    {
+    breakpoint: 767,
+    settings: {
+    slidesToShow: 2,
+    slidesToScroll: 1
+    }
+    },
+    {
+    breakpoint: 480,
+    settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1
+    }
+    }
+    ]
+    });
+    });

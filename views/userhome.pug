@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+  head
+    h1= title
+    p Welcome to #{title}
+    form(method='post', enctype='multipart/form-data')
+        input(type='file', name='imageupload')
+        input(type='submit', name='uploadimage', value='Upload Image')
