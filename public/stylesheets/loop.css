@@ -86,11 +86,15 @@ blockquote {
 }
 
 .navbar-brand {
-  color: white;
+  color: #38b;
   font-size: 1.4rem;
   font-weight: bold;
+  
 }
 
+.topicon {
+  padding-right: 600px;
+}
 .navbar-brand:hover,
 .tm-navbar.scroll .navbar-brand:hover {
   color: #38B;
@@ -104,6 +108,7 @@ blockquote {
   list-style: none;
   
 }
+
 
 .tm-nav-link {
   color: rgb(40, 157, 192);
@@ -139,6 +144,15 @@ blockquote {
 
 .tm-navbar.scroll .navbar-toggler-icon {
   color: #707070;
+}
+
+.ullist {
+  display: inline-block;
+}
+
+.topsection {
+  background-color: rgba(176, 226, 241, 0.863);
+  text-align: right;
 }
 
 
