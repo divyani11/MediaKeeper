@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var dotenv = require('dotenv'); 
 const mongoClient = require('mongodb').MongoClient;
+const bcrypt = require('bcrypt')
+
+const users = []
 
 //Import the module
 dotenv.config();
@@ -9,6 +12,8 @@ dotenv.config();
 //Set up default connection
 var mongoDB = process.env.MONGODB_URI
 
+
+router.use(express.urlencoded({extended: false}))
 
 //multer object creation
 var multer  = require('multer')
@@ -48,6 +53,25 @@ router.get('/userhome', function(req, res) {
   })
 })
 });
+
+//SignUp
+router.post('/signin', async (req,res) => {
+
+  try {
+      const hashedPassword = await bcrypt.hash(req.body.password,10)
+      users.push({
+        id: Date.now().toString(),
+        username: req.body.username,
+        email: req.body.email,
+        password: hashedPassword
+      })
+      res.redirect('/signin')
+  } catch{
+    alert("Opps! Something went wrong.");
+    res.redirect('/signin')
+  }
+  console.log(users)
+})
 
 /* Upload Files */
 router.post('/',upload.single('imageupload'), function(req,res)

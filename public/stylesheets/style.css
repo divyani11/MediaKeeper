@@ -235,6 +235,9 @@ input {
   transform: translate3d(640px, 0, 0);
 }
 
+.removeunderline{
+  text-decoration: none;
+}
 .sign-up {
   transform: translate3d(-900px, 0, 0);
 }

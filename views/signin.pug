@@ -4,21 +4,20 @@ html(lang="en")
     title Login/Registration
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans')
     link(rel='stylesheet' href='stylesheets/style.css')
-    // partial:index.partial.html
-    //p.tip MediaKeeper
     <br><br><br>
     .cont
-      .form.sign-in(method='post')
+      .form.sign-in(method='post' action='/signin')
         h2 Welcome to MediaKeeper,
         label
           span Email
-          input(type='email')
+          input(type='email' name= 'username' id='username' required)
         label
           span Password
-          input(type='password')
+          input(type='password' name='password' id='password' required)
         p.forgot-pass 
           a.forgot-pass(href='') Forgot password?
-        button.submit(type='button') Sign In
+        a.removeunderline(href='userhome')
+          button.submit(type='button' name='login') Sign In
       .sub-cont
         .img
           .img__text.m--up
@@ -30,17 +29,18 @@ html(lang="en")
           .img__btn
             span.m--up Sign Up
             span.m--in Sign In
-        .form.sign-up
+        .form.sign-up(method="POST" action="/signin")
           h2 Time to feel like own,
           label
-            span Name
-            input(type='text')
+            span User Name
+            input(type='text' name="username" id="username" required)
           label
             span Email
-            input(type='email')
+            input(type='email' name="email" id="email" required)
           label
             span Password
-            input(type='password')
-          button.submit(type='button') Sign Up
-    // partial
+            input(type='password' name="password" id="password" required)
+          a.removeunderline(href="/signin")
+            button.submit(type='button' name="submitdetails" value="Submit") Sign Up
+    
     script(src='javascripts/script.js')
