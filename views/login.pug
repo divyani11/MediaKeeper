@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+      meta(charset='UTF-8')
+      title Login
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans')
+      link(rel='stylesheet' href='stylesheets/style.css')
+      <br><br><br>
+      .cont
+        if messages
+          local.messages
+        section
+          form.form.sign-in(method='post' action='/login')
+            h2 Welcome to MediaKeeper,
+            label
+              span Email
+              input(type='email' name= 'email' id='email' required)
+            label
+              span Password
+              input(type='password' name='password' id='password' required)
+            p.forgot-pass 
+              a.forgot-pass(href='') Forgot password?
+            button.submit(type='submit') Sign In
+          a(href='/register') Register
+        .sub-cont
+          .img
+            .img__text.m--up
+              h2 New here?
+              p Sign up and discover productivity features with secure storage!
+            .img__btn
+              span.m--up Sign Up   
+          
+      script(src='javascripts/script.js')

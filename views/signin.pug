@@ -6,18 +6,20 @@ html(lang="en")
     link(rel='stylesheet' href='stylesheets/style.css')
     <br><br><br>
     .cont
-      .form.sign-in(method='post' action='/signin')
+      if messages.error
+        messages.error
+      form.form.sign-in(method='post' action='/signin')
         h2 Welcome to MediaKeeper,
         label
           span Email
-          input(type='email' name= 'username' id='username' required)
+          input(type='email' name= 'email' id='email' required)
         label
           span Password
           input(type='password' name='password' id='password' required)
         p.forgot-pass 
           a.forgot-pass(href='') Forgot password?
         a.removeunderline(href='userhome')
-          button.submit(type='button' name='login') Sign In
+          button.submit Sign In
       .sub-cont
         .img
           .img__text.m--up
@@ -29,7 +31,7 @@ html(lang="en")
           .img__btn
             span.m--up Sign Up
             span.m--in Sign In
-        .form.sign-up(method="POST" action="/signin")
+        form.form.sign-up(method="POST" action="/signin")
           h2 Time to feel like own,
           label
             span User Name
@@ -40,7 +42,6 @@ html(lang="en")
           label
             span Password
             input(type='password' name="password" id="password" required)
-          a.removeunderline(href="/signin")
-            button.submit(type='button' name="submitdetails" value="Submit") Sign Up
+          button.submit Sign Up
     
     script(src='javascripts/script.js')

@@ -1,0 +1,71 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title Welcome #{username}
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css')
+  link(rel='stylesheet' href='stylesheets/userprofile-style.css')
+
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      a.navbar-brand(href='#')  MediaKeeper
+.container
+  button.btn.btn-primary(ng-click='vm.addDoc()') Add Doc
+  .panel-group(data-as-sortable='vm.documentDragListeners' ng-model='vm.documents')
+    .panel.panel-default.xlist(ng-repeat='doc in vm.documents' data-as-sortable-item='')
+      .panel-heading
+        h4.panel-title
+          i.fa.fa-grip-large.fa-rotate-90(data-as-sortable-item-handle='')
+          a(data-toggle='collapse' data-target='#collapse{{$index}}')
+            | {doc.type}
+            i.chevron.fa.fa-fw
+          span.badge {{doc.files.length}}
+          a.close-ribbon.pull-right(ng-click='vm.removeDoc($index)')
+            i.fa.fa-times
+      .panel-collapse.collapse.in(id='collapse{{$index}}')
+        .panel-body
+          button.btn.btn-primary(ngf-select='vm.addFiles($files,doc.files)' accept='*/*' multiple='' ng-model='vm.files' ngf-max-height='1000' ngf-max-size='5MB')
+            | Select Files
+          br
+          br
+          .drop-box(ngf-drop='vm.addFiles($files,doc.files)' ngf-drag-over-class="'dragover'" ngf-multiple='true' ngf-pattern="'image/*,application/pdf'")
+            .dragOverlay
+              .dragInner Drop files here.
+            div(ngf-no-file-drop='') File Drag/Drop is not supported for this browser
+            ul.list-group(data-as-sortable='vm.fileDragListeners' ng-model='doc.files')
+              li.list-group-item.list-group-item-info
+                .row
+                  .col-lg-1.col-md-1.col-sm-3.col-xs-3 Sort
+                  .col-lg-4.col-md-4.col-sm-7.col-xs-7 Name
+                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Size (MB)
+                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Type
+                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Modified on
+                  .col-lg-1.col-md-1.col-sm-1.col-xs-2
+              li.list-group-item(ng-show='doc.files.length === 0')
+                | Upload your Media here!
+              li.list-group-item.xlist(ng-repeat='f in doc.files' data-as-sortable-item='')
+                .row
+                  .col-lg-1.col-md-1.col-sm-3.col-xs-3
+                    .row
+                      .col-xs-4(data-as-sortable-item-handle='' style='padding-top:5px;')
+                        i.fa.fa-grip
+                  .col-lg-11.col-md-11.col-sm-7.col-xs-7
+                    .row
+                      .col-lg-5.col-md-5.col-sm-11.col-xs-10.wraptext
+                        | {{f.name}}
+                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{(f.size/1024/1024).toPrecision(2)}}
+                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{f.type}}
+                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{f.lastModified | date: short}}
+                      .col-lg-1.col-md-1.col-sm-1.col-xs-2
+                        button.btn.btn-xs.btn-danger(type='button' ng-click='vm.removeFile(doc.files,$index)')
+                          span
+                            i.fa.fa-trash
+  button.btn.btn-primary Upload
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-all.min.js')
+script(src='https://cdn.rawgit.com/a5hik/ng-sortable/master/dist/ng-sortable.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js')
+script(src='javascripts/userprofile-script.js')

@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+      meta(charset='UTF-8')
+      title Registration
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans')
+      link(rel='stylesheet' href='stylesheets/style.css')
+      <br><br><br>
+      .cont
+        section
+            form.form.sign-in(method='post' action='/register')
+              h2 Time to feel like own,
+              label
+                span User Name
+                input(type='text' name="username" id="username" required)
+              label
+                span Email
+                input(type='email' name= 'email' id='email' required)
+              label
+                span Password
+                input(type='password' name='password' id='password' required)
+              button.submit(type='submit') Sign Up 
+            a(href='/login') Login
+            .sub-cont
+                .img
+                  .img__text.m--up
+                    h2 One of us?
+                    p If you already has an account, just sign in. We&apos;ve missed you!
+                  .img__btn
+                    span.m--up Sign In
+        script(src='javascripts/script.js')
