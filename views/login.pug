@@ -6,8 +6,8 @@ html(lang="en")
       link(rel='stylesheet' href='stylesheets/style.css')
       <br><br><br>
       .cont
-        if messages.err
-          messages.err
+        if (message)
+            div#note #{message}
         section
           form.form.sign-in(method='post' action='/login')
             h2 Welcome to MediaKeeper,
@@ -25,7 +25,7 @@ html(lang="en")
           .img
             .img__text.m--up
               h2 New here?
-              p Sign up and discover productivity features with secure storage! 
+              p Register and discover productivity features with secure storage! 
               br
               br 
               br

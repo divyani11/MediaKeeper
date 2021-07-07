@@ -91,6 +91,17 @@ button {
   background-size: cover;
   
 }
+
+.imgs:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 900px;
+  height: 100%;
+  background-image: url(../images/signup.jpg);
+  background-size: cover;
+}
 .img:after {
   content: "";
   position: absolute;
