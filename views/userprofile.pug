@@ -68,6 +68,24 @@ nav.topsection.navbar.navbar-inverse.navbar-fixed-top
                           span
                             i.fa.fa-trash
   button.btn.btn-primary Upload
+  br
+  p -----------------------------------------------------------------------
+  br
+  form(method='post' action='/uploadFile' enctype='multipart/form-data')
+              input(type='file' name= 'myFile')
+              br
+              button.btn-primary(type="submit") Upload your File
+  br
+  form(method='post' action='/uploadmultiple' enctype='multipart/form-data')
+                input(type='file' name= 'myFiles' multiple)
+                br
+                button.btn-primary(type="submit") Upload your Files
+  br
+  form(method='post' action='/uploadphoto' enctype='multipart/form-data')
+              input(type='file' name= 'myImage' accept="image/*")
+              br
+              button.btn-primary(type="submit") Upload Photo
+              
 script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js')

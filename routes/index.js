@@ -13,10 +13,14 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 var assert = require('assert')
 const bodyParser = require('body-parser');
-const multer = require('multer')
+const multer = require('multer');
+const path = require('path')
+//filesystem module
+const fs = require('fs');
 
 //User Model
-const User = require ('../models/User')
+const User = require ('../models/User');
+const { db } = require('../models/User');
 require('./passport-config')(passport);
 
 //Import the module
@@ -64,6 +68,7 @@ router.get('/register', function(req, res, next) {
 /* GET UserProfile page. */
 router.get('/userprofile', checkAuthenticated,function(req, res) {
   res.render('userprofile', { username: req.user.username});
+  //res.sendFile(_dirname + 'userprofile', { username: req.user.username});
 
 });
 
@@ -162,5 +167,74 @@ function checkNotAuthenticated(req, res, next){
   }
   
 }
+
+//Use the middleware of bodyparser
+
+router.use(bodyParser.urlencoded({extended:true}))
+
+//Initializing Multer Library
+
+var storage = multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'uploads')
+  },
+  filename:function(req,file,cb){
+    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+var upload = multer({
+  storage:storage
+})
+
+//Configuring the Upload File route
+router.post('/uploadfile',upload.single('myFile'),(req,res,next)=>{
+  const file = req.file;
+
+  if(!file){
+    const error = new Error("Please Upload a File");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.send(file);
+})
+
+//Configure multiple files route
+router.post('/uploadmultiple',upload.array('myFiles',12),(req,res,next)=>{
+  const files = req.files;
+
+  if(!files){
+    const error = new Error("Please choose Files");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  //No error
+    res.send(files);
+})
+
+//Configuring the image upload to the database
+router.post("/uploadphoto", upload.single('myImage'),(req,res)=>{
+  var img = fs.readFileSync(req.file.path);
+
+  var encode_image = img.toString('base64');
+
+  //Defining a JSON Object for the image
+
+  var finalImg = {
+    contentType:req.file.mimetype,
+    path:req.file.path,
+    image:new Buffer(encode_image,'base64')
+  };
+  //inserting image to Database
+  db.collection('images').insertOne(finalImg,(err,result)=>{
+    console.log(result);
+
+    if(err) return console.log(err);
+    console.log("Image saved to Database");
+
+    res.contentType(finalImg.contentType);
+    res.send(finalImg.image);
+  })
+})
 
 module.exports = router;
