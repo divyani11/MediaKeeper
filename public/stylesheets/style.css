@@ -36,7 +36,7 @@ input, button {
   position: relative;
   width: 640px;
   height: 100%;
-  transition: transform 1.2s ease-in-out;
+ 
   padding: 50px 30px 0;
 }
 
@@ -54,12 +54,10 @@ input, button {
   height: 100%;
   padding-left: 260px;
   background: #fff;
-  transition: transform 1.2s ease-in-out;
+  
 }
 
-.s--signup .sub-cont {
-  transform: translate3d(-640px, 0, 0);
-}
+
 
 button {
   display: block;
@@ -91,7 +89,7 @@ button {
   height: 100%;
   background-image: url(../images/signin.jpg);
   background-size: cover;
-  transition: transform 1.2s ease-in-out;
+  
 }
 .img:after {
   content: "";
@@ -102,9 +100,8 @@ button {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
-.s--signup .img:before {
-  transform: translate3d(640px, 0, 0);
-}
+
+
 .img__text {
   z-index: 2;
   position: absolute;
@@ -114,7 +111,7 @@ button {
   padding: 0 20px;
   text-align: center;
   color: #fff;
-  transition: transform 1.2s ease-in-out;
+  
 }
 .img__text h2 {
   margin-bottom: 10px;
@@ -124,9 +121,8 @@ button {
   font-size: 14px;
   line-height: 1.5;
 }
-.s--signup .img__text.m--up {
-  transform: translateX(520px);
-}
+
+
 .img__text.m--in {
   transform: translateX(-520px);
 }
@@ -142,9 +138,13 @@ button {
   margin: 0 auto;
   background: transparent;
   color: #fff;
-  text-transform: uppercase;
-  font-size: 15px;
+  text-decoration: none;
+  font-size: 18px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 .img__btn:after {
   content: "";
@@ -166,17 +166,12 @@ button {
   align-items: center;
   width: 100%;
   height: 100%;
-  transition: transform 1.2s;
+  
 }
-.img__btn span.m--in {
-  transform: translateY(-72px);
-}
-.s--signup .img__btn span.m--in {
-  transform: translateY(0);
-}
-.s--signup .img__btn span.m--up {
-  transform: translateY(72px);
-}
+
+
+
+
 
 h2 {
   width: 100%;
@@ -233,14 +228,10 @@ input {
   color: #455a81;
 }
 
-.sign-in {
-  transition-timing-function: ease-out;
-}
-.s--signup .sign-in {
-  transition-timing-function: ease-in-out;
-  transition-duration: 1.2s;
-  transform: translate3d(640px, 0, 0);
-}
+
+
+
+
 
 .removeunderline{
   text-decoration: none;
