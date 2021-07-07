@@ -12,6 +12,8 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 var assert = require('assert')
+const bodyParser = require('body-parser');
+const multer = require('multer')
 
 //User Model
 const User = require ('../models/User')
