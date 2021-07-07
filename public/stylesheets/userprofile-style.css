@@ -2,17 +2,70 @@ body {
     padding-top: 70px;
     padding-bottom: 30px;
   }
+  .topsection {
+    background-color: rgba(176, 226, 241, 0.863);
+    text-align: right;
+  }
+  .headertext {
+    color: rgb(40, 157, 192);
+    font-size: 1.4rem;
+    font-weight: bold;
+    
+  }
+  .buttonpadding
+  {
+    padding-top: 1%;
+    display: block;
+    text-shadow: #38b;
+    font-weight: 100;
+    color:#38b ;
+    background: -webkit-linear-gradient(#38b);
+    padding: 0.2rem;
+    text-align: center;
+    margin-top: 8px;
+    font-weight: bold;
+   
+  }
   
+
+  .navbar-nav {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .topicon {
+    padding-right: 400px;
+  }
+  .tm-nav-link {
+    color: rgb(40, 157, 192);
+    font-weight: 50;
+    text-decoration: none;
+  }
+  .navbar-brandtop {
+    color: #38b;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding-top: 1.5%;
+    text-decoration: none;
+  }
+  
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .tm-nav-link:hover {
+    color:rgb(148, 172, 196);
+    text-decoration: none;
+    
+  }
   .panel-group .panel+.panel {
     margin-top: 10px;
   }
-  /* \f142 is ellipsis-v */
-  /* \202F is thin unbreakable space */
-  
+
   .fa.fa-grip:before {
     content: "\f142 \202F \f142";
   }
-  /*fa-grip-large : <i class="fa fa-grip-large fa-rotate-90"></i>*/
+
   
   .fa.fa-grip-large:before {
     content: "\f142 \202F \f142 \202F \f142 \202F \f142";
@@ -27,12 +80,7 @@ body {
   }
   
   .xlist.ng-enter {
-    /*
-  -webkit-transition: 0.4s ease-in all;
-    -moz-transition: 0.4s ease-in all;
-    -ms-transition: 0.4s ease-in all;
-    -o-transition: 0.4s ease-in all;
-  */
+  
     transition: 0.4s ease-in all;
     opacity: 0;
   }

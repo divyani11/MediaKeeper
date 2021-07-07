@@ -1,3 +1,4 @@
+
 doctype html
 head
   meta(charset='UTF-8')
@@ -6,10 +7,15 @@ head
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css')
   link(rel='stylesheet' href='stylesheets/userprofile-style.css')
 
-nav.navbar.navbar-inverse.navbar-fixed-top
+
+nav.topsection.navbar.navbar-inverse.navbar-fixed-top
   .container
-    .navbar-header
-      a.navbar-brand(href='#')  MediaKeeper
+    .navbar-header.headertext.navbar-nav 
+      a.tm-nav-link.topicon.navbar-brandtop(href='', class="fa fa-folder-open") &nbsp Welcome to MediaKeeper &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp
+      a.nav-link.tm-nav-link.navbar-brandtop(href='', class="fa fa-user")  Hello, #{username}  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp
+      a.nav-link.tm-nav-link.navbar-brandtop(href='mailto:info@mediakeeper.com', class="fa fa-question-circle")  Need Help?   
+    form(action="/logout" method="GET") 
+        button.buttonpadding(type="submit") Log Out
 .container
   button.btn.btn-primary(ng-click='vm.addDoc()') Add Doc
   .panel-group(data-as-sortable='vm.documentDragListeners' ng-model='vm.documents')
