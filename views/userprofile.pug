@@ -71,15 +71,20 @@ nav.topsection.navbar.navbar-inverse.navbar-fixed-top
   br
   p -----------------------------------------------------------------------
   br
+  h4 Upload File !!
   form(method='post' action='/uploadFile' enctype='multipart/form-data')
               input(type='file' name= 'myFile')
               br
               button.btn-primary(type="submit") Upload your File
   br
+  h4 Upload Multiple Files !!
+  br
   form(method='post' action='/uploadmultiple' enctype='multipart/form-data')
                 input(type='file' name= 'myFiles' multiple)
                 br
                 button.btn-primary(type="submit") Upload your Files
+  br
+  h4 Upload Images !!
   br
   form(method='post' action='/uploadphoto' enctype='multipart/form-data')
               input(type='file' name= 'myImage' accept="image/*")
