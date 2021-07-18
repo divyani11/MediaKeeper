@@ -39,9 +39,10 @@ router.use(flash())
 router.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  
 
-}))
+}));
 //Using Passport for Registration
 router.use(passport.initialize())
 router.use(passport.session())
@@ -68,7 +69,7 @@ router.get('/register', function(req, res, next) {
 /* GET UserProfile page. */
 router.get('/userprofile', checkAuthenticated,function(req, res) {
   res.render('userprofile', { username: req.user.username});
-  //res.sendFile(_dirname + 'userprofile', { username: req.user.username});
+  
 
 });
 
@@ -87,6 +88,8 @@ router.post('/register', (req,res)=>{
   //check pass length
   if(password.length<6){
       errors.push({msg:'Password should be at least 6 characters'});
+      res.send('Password should be at least 6 characters');
+      
   }
 
   if(errors.length>0){
@@ -102,7 +105,8 @@ router.post('/register', (req,res)=>{
       .then(user =>{
           if(user){
               //user exists
-              errors.push({msg:'Email is already registered'})
+              errors.push({msg:'Email is already registered'});
+              res.send('Email is already registered');
               res.render('register',{
                   errors,
                   username,
@@ -224,6 +228,7 @@ router.post("/uploadphoto", upload.single('myImage'),(req,res)=>{
     contentType:req.file.mimetype,
     path:req.file.path,
     image:new Buffer(encode_image,'base64')
+    
   };
   //inserting image to Database
   db.collection('images').insertOne(finalImg,(err,result)=>{

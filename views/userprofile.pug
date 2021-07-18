@@ -6,9 +6,9 @@ head
   link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css')
   link(rel='stylesheet' href='stylesheets/userprofile-style.css')
-  
 
 nav.topsection.navbar.navbar-inverse.navbar-fixed-top
+  //- Header Bar
   .container
     .navbar-header.headertext.navbar-nav 
       a.tm-nav-link.topicon.navbar-brandtop(href='', class="fa fa-folder-open") &nbsp Welcome to MediaKeeper &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp 
@@ -16,85 +16,72 @@ nav.topsection.navbar.navbar-inverse.navbar-fixed-top
       a.nav-link.tm-nav-link.navbar-brandtop(href='mailto:info@mediakeeper.com', class="fa fa-question-circle")  Need Help?   
     form(action="/logout" method="GET") 
         button.buttonpadding(type="submit") Log Out
-.container
-  button.btn.btn-primary(ng-click='vm.addDoc()') Add Doc
-  .panel-group(data-as-sortable='vm.documentDragListeners' ng-model='vm.documents')
-    .panel.panel-default.xlist(ng-repeat='doc in vm.documents' data-as-sortable-item='')
+.container 
+  .panel-group
+    .panel.panel-default.xlist
       .panel-heading
         h4.panel-title
-          i.fa.fa-grip-large.fa-rotate-90(data-as-sortable-item-handle='')
-          a(data-toggle='collapse' data-target='#collapse{{$index}}')
-            | {doc.type}
-            i.chevron.fa.fa-fw
-          span.badge {{doc.files.length}}
-          a.close-ribbon.pull-right(ng-click='vm.removeDoc($index)')
-            i.fa.fa-times
-      .panel-collapse.collapse.in(id='collapse{{$index}}')
+        i.fa.fa-images 
+          a(href='', class="fa fa-folder-open")
+            | &nbsp MediaKeeper provides you the ability to store your images, files, videos altogether at one place.
         .panel-body
-          button.btn.btn-primary(ngf-select='vm.addFiles($files,doc.files)' accept='*/*' multiple='' ng-model='vm.files' ngf-max-height='1000' ngf-max-size='5MB')
-            | Select Files
+          button.btn-primary
+            | Store all your MEDIA safely here!
           br
           br
-          .drop-box(ngf-drop='vm.addFiles($files,doc.files)' ngf-drag-over-class="'dragover'" ngf-multiple='true' ngf-pattern="'image/*,application/pdf'")
+          .drop-box
             .dragOverlay
-              .dragInner Drop files here.
-            div(ngf-no-file-drop='') File Drag/Drop is not supported for this browser
-            ul.list-group(data-as-sortable='vm.fileDragListeners' ng-model='doc.files')
+            //- Upload Image block
+            ul.list-group
               li.list-group-item.list-group-item-info
                 .row
-                  .col-lg-1.col-md-1.col-sm-3.col-xs-3 Sort
-                  .col-lg-4.col-md-4.col-sm-7.col-xs-7 Name
-                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Size (MB)
-                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Type
-                  .col-lg-2.col-md-2.hidden-sm.hidden-xs Modified on
-                  .col-lg-1.col-md-1.col-sm-1.col-xs-2
-              li.list-group-item(ng-show='doc.files.length === 0')
-                | Upload your Media here!
-              li.list-group-item.xlist(ng-repeat='f in doc.files' data-as-sortable-item='')
+                  p Browse your Image and upload
+              li.list-group-item
+                | Upload your Image here!
+                li.list-group-item.xlist
+                  .row
+                  form(method='post' action='/uploadphoto' enctype='multipart/form-data')
+                    input(type='file' name= 'myImage' accept="image/*")
+                    br
+                    button.btn.btn-primary(type="submit") Upload Photo
+                    br       
+                    
+            //- Upload Multiple Files block
+            ul.list-group
+              li.list-group-item.list-group-item-info
                 .row
-                  .col-lg-1.col-md-1.col-sm-3.col-xs-3
-                    .row
-                      .col-xs-4(data-as-sortable-item-handle='' style='padding-top:5px;')
-                        i.fa.fa-grip
-                  .col-lg-11.col-md-11.col-sm-7.col-xs-7
-                    .row
-                      .col-lg-5.col-md-5.col-sm-11.col-xs-10.wraptext
-                        | {{f.name}}
-                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{(f.size/1024/1024).toPrecision(2)}}
-                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{f.type}}
-                      .col-lg-2.col-md-2.hidden-sm.hidden-xs {{f.lastModified | date: short}}
-                      .col-lg-1.col-md-1.col-sm-1.col-xs-2
-                        button.btn.btn-xs.btn-danger(type='button' ng-click='vm.removeFile(doc.files,$index)')
-                          span
-                            i.fa.fa-trash
-  button.btn.btn-primary Upload
-  br
-  p -----------------------------------------------------------------------
-  br
-  h4 Upload File !!
-  form(method='post' action='/uploadFile' enctype='multipart/form-data')
-              input(type='file' name= 'myFile')
-              br
-              button.btn-primary(type="submit") Upload your File
-  br
-  h4 Upload Multiple Files !!
-  br
-  form(method='post' action='/uploadmultiple' enctype='multipart/form-data')
-                input(type='file' name= 'myFiles' multiple)
-                br
-                button.btn-primary(type="submit") Upload your Files
-  br
-  h4 Upload Images !!
-  br
-  form(method='post' action='/uploadphoto' enctype='multipart/form-data')
-              input(type='file' name= 'myImage' accept="image/*")
-              br
-              button.btn-primary(type="submit") Upload Photo
-              
-script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-all.min.js')
-script(src='https://cdn.rawgit.com/a5hik/ng-sortable/master/dist/ng-sortable.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js')
-script(src='javascripts/userprofile-script.js')
+                  p Browse multiple files and upload   
+              li.list-group-item
+                | Upload multiple Files here!
+              li.list-group-item.xlist
+                .row
+                form(method='post' action='/uploadmultiple' enctype='multipart/form-data')
+                  input(type='file' name= 'myFiles' multiple)
+                  br
+                  button.btn.btn-primary(type="submit") Upload Files
+                  
+            //- Upload File block
+            ul.list-group
+              li.list-group-item.list-group-item-info
+                .row
+                  p Browse your File and upload    
+              li.list-group-item
+                | Upload your File here!
+              li.list-group-item.xlist
+                .row
+                form(method='post' action='/uploadFile' enctype='multipart/form-data')
+                  
+                    input(type='file' name= 'myFile')
+                    br
+                    button.btn.btn-primary(type="submit") Upload File
+    br
+    br
+    //-Footer
+    footer.text-center.small.tm-footer
+      p.mb-0
+        |  &copy; 2021 MediaKeeper 
+        | . 
+        a(rel='nofollow' href='#home' title='HTML templates') Designed by Divyani Rajani
+
+  -if(success-msg)
+    success-msg
