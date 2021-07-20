@@ -8,11 +8,6 @@ This website is developed with NodeJS -using Express framework with the ease to 
 
 ------------------------------------------------------------------------------------------------------------
 
-/* To execute the code */
+If you would like to see this project, click the link below.
 
-You can follow below steps :
-
-- Clone the repository "https://github.com/divyani11/MediaKeeper.git"
-- Run npm install
-- Run npm start
-- Navigate http://localhost:3011/
+https://mediakeeper.herokuapp.com/
