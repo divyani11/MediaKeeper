@@ -11,3 +11,15 @@ This website is developed with NodeJS -using Express framework with the ease to 
 If you would like to see this project, click the link below.
 
 https://mediakeeper.herokuapp.com/
+
+------------------------------------------------------------------------------------------------------------
+
+Steps for use
+In the project directory, you can run:
+
+npm install
+
+npm start
+
+Runs the app in the development mode.
+Open http://localhost:3011 to view it in the browser.
